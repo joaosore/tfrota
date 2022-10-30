@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    position: relative;
+
+    h2 {
+        text-align: center;
+    }
+
+    button {
+        background-color: #FF6701;
+        color: #FFF;
+        border: none;
+        &:hover {
+            background-color: #FF6701;
+            opacity: 0.8;
+        }
+    }
+}

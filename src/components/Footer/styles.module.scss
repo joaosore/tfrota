@@ -1,0 +1,20 @@
+.container {
+    div {
+        max-width: 1100px;
+        margin: auto;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 50px;
+        padding-bottom: 25px;
+
+        @media only screen and (max-width: 720px) {
+            flex-direction: column;
+        }
+
+        span {
+            font-size: 10px;
+        }
+    }
+}
