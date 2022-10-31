@@ -2,7 +2,7 @@ import mailchimp from '@mailchimp/mailchimp_marketing';
 
 mailchimp.setConfig({
   apiKey: process.env.MAILCHIMP_API_KEY,
-  server: process.env.MAILCHIMP_API_SERVER, // e.g. us1
+  server: process.env.MAILCHIMP_API_SERVER,
 });
 
 export default async function handler(req, res) {
@@ -11,6 +11,11 @@ export default async function handler(req, res) {
   if (!email) {
     return res.status(400).json({ error: 'Email is required' });
   }
+
+  console.log(email)
+  console.log(process.env.MAILCHIMP_API_KEY)
+  console.log(process.env.MAILCHIMP_API_SERVER)
+  console.log(process.env.MAILCHIMP_AUDIENCE_ID)
 
   try {
     await mailchimp.lists.addListMember(process.env.MAILCHIMP_AUDIENCE_ID, {
