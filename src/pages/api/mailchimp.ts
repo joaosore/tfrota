@@ -11,13 +11,17 @@ export default function handler(req, res) {
   });
 
   const run = async () => {
-    const response = client.lists.addListMember('55c18933f8', {
-      email_address: email,
-      phone: phone,
-      name: name,
-      status: 'pending',
-    });
-    console.log(response);
+    try {
+      const response = await client.lists.addListMember('55c18933f8', {
+        email_address: email,
+        phone: phone,
+        name: name,
+        status: 'pending',
+      });
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   run();
