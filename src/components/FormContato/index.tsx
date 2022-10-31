@@ -22,7 +22,7 @@ const FormContato = ({}) => {
     });
 
     const run = async () => {
-      const response = await client.lists.addListMember('1131505', {
+      const response = await client.lists.addListMember('55c18933f8', {
         email_address: values.email,
         phone: values.phone,
         name: values.name,
