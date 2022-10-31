@@ -5,11 +5,11 @@ import { Functionalities } from '../blocos/Functionalities';
 import { Sales } from '../blocos/Sales';
 import { Footer } from '../components/Footer';
 
-import style from './home.module.scss'
+import style from './home.module.scss';
 
 import Head from 'next/head';
 
-export default function Home() {
+export default function Home({}) {
   return (
     <>
       <Head>
@@ -21,15 +21,13 @@ export default function Home() {
         <div className={style.main}>
           <div className={style.box}>
             <div className={style.content}>
-              <h1>
-                Tenha o controle total de suas frotas na palma da mão.
-              </h1>
+              <h1>Tenha o controle total de suas frotas na palma da mão.</h1>
               <p>
-                Veja em tempo real as principais informações da sua frota. Tenha em suas mãos o controle total, realize filtros por período, fornecedor e muito mais. 
+                Veja em tempo real as principais informações da sua frota. Tenha
+                em suas mãos o controle total, realize filtros por período,
+                fornecedor e muito mais.
               </p>
-              <button>
-                ENTRE EM CONTATO
-              </button>
+              <button>ENTRE EM CONTATO</button>
             </div>
           </div>
           <div className={style.box}>
@@ -45,18 +43,7 @@ export default function Home() {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-
-  const product = {
-    priceId: "1",
-    amount: new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    }).format(1000 / 100),
-  };
-
   return {
-    props: {
-      product,
-    },
+    props: {},
   };
 };

@@ -1,12 +1,10 @@
-
 import FormContato from '../../components/FormContato';
-import style from './styles.module.scss'
+import style from './styles.module.scss';
 
-
-const Sales = () => {
+const Sales = ({}) => {
   return (
     <>
-      <div className={style.container} >
+      <div className={style.container}>
         <div className={style.bg}>
           <img src="./img/fundo.png" alt="" />
         </div>
@@ -88,6 +86,6 @@ const Sales = () => {
       </div>
     </>
   );
-}
+};
 
-export { Sales }
+export { Sales };
