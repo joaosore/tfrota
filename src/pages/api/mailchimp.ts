@@ -10,6 +10,9 @@ export default function handler(req, res) {
     server: process.env.MAILCHIMP_SERVER,
   });
 
+  console.log(process.env.MAILCHIMP_TOKEN);
+  console.log(process.env.MAILCHIMP_SERVER);
+
   const run = async () => {
     try {
       const response = await client.lists.addListMember('55c18933f8', {
