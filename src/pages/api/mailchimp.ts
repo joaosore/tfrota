@@ -1,26 +1,25 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import mailchimp from '@mailchimp/mailchimp_marketing';
 
-export default function handler(req, res) {
-  const client = require('@mailchimp/mailchimp_marketing');
+mailchimp.setConfig({
+  apiKey: process.env.MAILCHIMP_API_KEY,
+  server: process.env.MAILCHIMP_API_SERVER, // e.g. us1
+});
 
-  const { email, phone, name } = req.body;
+export default async function handler(req, res) {
+  const { email } = req.body;
 
-  client.setConfig({
-    apiKey: process.env.MAILCHIMP_TOKEN,
-    server: process.env.MAILCHIMP_SERVER,
-  });
+  if (!email) {
+    return res.status(400).json({ error: 'Email is required' });
+  }
 
-  const run = async () => {
-    const response = await client.lists.addListMember('55c18933f8', {
+  try {
+    await mailchimp.lists.addListMember(process.env.MAILCHIMP_AUDIENCE_ID, {
       email_address: email,
-      phone: phone,
-      name: name,
-      status: 'pending',
+      status: 'subscribed',
     });
-    console.log(response);
-  };
 
-  run();
-
-  res.status(200).json({ status: 'OK' });
+    return res.status(200).json({ status: 'OK' });
+  } catch (error) {
+    return res.status(500).json({ error: error.message || error.toString() });
+  }
 }
