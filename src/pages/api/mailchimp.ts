@@ -6,8 +6,8 @@ export default function handler(req, res) {
   const { email, phone, name } = req.body;
 
   client.setConfig({
-    apiKey: 'e5145ff832928afd15d6c48334ff4702-us13',
-    server: 'us13',
+    apiKey: process.env.MAILCHIMP_TOKEN,
+    server: process.env.MAILCHIMP_SERVER,
   });
 
   const run = async () => {
