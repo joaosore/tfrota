@@ -17,7 +17,7 @@ const FormContato = ({}) => {
     const client = require('@mailchimp/mailchimp_marketing');
 
     client.setConfig({
-      apiKey: '10ee395fc85e992aa626e30d2acf7dd0',
+      apiKey: '10ee395fc85e992aa626e30d2acf7dd0-us13',
       server: 'us13',
     });
 
