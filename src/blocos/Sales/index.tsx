@@ -4,7 +4,7 @@ import style from './styles.module.scss';
 const Sales = ({}) => {
   return (
     <>
-      <div className={style.container}>
+      <div id="price" className={style.container}>
         <div className={style.bg}>
           <img src="./img/fundo.png" alt="" />
         </div>

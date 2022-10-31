@@ -1,4 +1,7 @@
 import { Form, Input, Button, Checkbox, Card } from 'antd';
+import axios from 'axios';
+import { useState } from 'react';
+import { api } from '../../services/api';
 
 import style from './styles.module.scss';
 
@@ -11,27 +14,16 @@ const tailLayout = {
 };
 
 const FormContato = ({}) => {
-  const onFinish = (values) => {
+  const [success, setSuccess] = useState(false);
+
+  const onFinish = async (values) => {
     console.log('Success:', values);
 
-    const client = require('@mailchimp/mailchimp_marketing');
+    const status = await api.post('/mailchimp', values);
 
-    client.setConfig({
-      apiKey: '10ee395fc85e992aa626e30d2acf7dd0-us13',
-      server: 'us13',
-    });
-
-    const run = async () => {
-      const response = await client.lists.addListMember('55c18933f8', {
-        email_address: values.email,
-        phone: values.phone,
-        name: values.name,
-        status: 'pending',
-      });
-      console.log(response);
-    };
-
-    run();
+    if (status.data.status == 'OK') {
+      setSuccess(true);
+    }
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -41,52 +33,56 @@ const FormContato = ({}) => {
   return (
     <div className={style.container}>
       <Card style={{ width: 450 }}>
-        <Form
-          {...layout}
-          name="basic"
-          initialValues={{ remember: true }}
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
-        >
-          <h2>Entre em contato</h2>
-
-          <Form.Item
-            label="Nome"
-            name="name"
-            rules={[
-              {
-                required: true,
-                message: 'Por favor, insira seu nome de usuário!',
-              },
-            ]}
+        {success ? (
+          <>Confirme o email para finalizar o cadastro</>
+        ) : (
+          <Form
+            {...layout}
+            name="basic"
+            initialValues={{ remember: true }}
+            onFinish={onFinish}
+            onFinishFailed={onFinishFailed}
           >
-            <Input />
-          </Form.Item>
+            <h2>Entre em contato</h2>
 
-          <Form.Item
-            label="E-mail"
-            name="email"
-            rules={[
-              { required: true, message: 'Por favor, insira seu email!' },
-            ]}
-          >
-            <Input />
-          </Form.Item>
+            <Form.Item
+              label="Nome"
+              name="name"
+              rules={[
+                {
+                  required: true,
+                  message: 'Por favor, insira seu nome de usuário!',
+                },
+              ]}
+            >
+              <Input />
+            </Form.Item>
 
-          <Form.Item
-            label="Telefone"
-            name="phone"
-            rules={[
-              { required: true, message: 'Por favor, insira seu telefone!' },
-            ]}
-          >
-            <Input />
-          </Form.Item>
+            <Form.Item
+              label="E-mail"
+              name="email"
+              rules={[
+                { required: true, message: 'Por favor, insira seu email!' },
+              ]}
+            >
+              <Input />
+            </Form.Item>
 
-          <Button type="primary" htmlType="submit" block>
-            Enviar
-          </Button>
-        </Form>
+            <Form.Item
+              label="Telefone"
+              name="phone"
+              rules={[
+                { required: true, message: 'Por favor, insira seu telefone!' },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+
+            <Button type="primary" htmlType="submit" block>
+              Enviar
+            </Button>
+          </Form>
+        )}
       </Card>
     </div>
   );

@@ -1,4 +1,4 @@
-import style from './styles.module.scss'
+import style from './styles.module.scss';
 
 const Header = () => {
   return (
@@ -10,18 +10,24 @@ const Header = () => {
           </div>
           <div className={style.nav}>
             <ul>
-              <li>Home</li>
-              <li>Funcionalidades</li>
-              <li>Preço</li>
+              <li>
+                <a href="#home">Home</a>
+              </li>
+              <li>
+                <a href="#funcionalidades">Funcionalidades</a>
+              </li>
+              <li>
+                <a href="#price">Preço</a>
+              </li>
             </ul>
           </div>
-          <button>
-            ENTRE EM CONTATO
-          </button>
+          <a href="#price">
+            <button>ENTRE EM CONTATO</button>
+          </a>
         </div>
       </header>
     </>
   );
-}
+};
 
-export { Header }
+export { Header };

@@ -27,7 +27,9 @@ export default function Home({}) {
                 em suas mãos o controle total, realize filtros por período,
                 fornecedor e muito mais.
               </p>
-              <button>ENTRE EM CONTATO</button>
+              <a href="#price">
+                <button>ENTRE EM CONTATO</button>
+              </a>
             </div>
           </div>
           <div className={style.box}>
