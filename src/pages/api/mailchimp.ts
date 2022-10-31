@@ -12,11 +12,6 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Email is required' });
   }
 
-  console.log(email)
-  console.log(process.env.MAILCHIMP_API_KEY)
-  console.log(process.env.MAILCHIMP_API_SERVER)
-  console.log(process.env.MAILCHIMP_AUDIENCE_ID)
-
   try {
     await mailchimp.lists.addListMember(process.env.MAILCHIMP_AUDIENCE_ID, {
       email_address: email,

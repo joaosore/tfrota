@@ -34,7 +34,7 @@ const FormContato = ({}) => {
     <div className={style.container}>
       <Card style={{ width: 450 }}>
         {success ? (
-          <>Confirme o email para finalizar o cadastro</>
+          <>Obrigado por entrar em contato!</>
         ) : (
           <Form
             {...layout}
