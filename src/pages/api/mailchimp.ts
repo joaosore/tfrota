@@ -10,12 +10,17 @@ export default function handler(req, res) {
     server: process.env.MAILCHIMP_SERVER,
   });
 
-  client.lists.addListMember('55c18933f8', {
-    email_address: email,
-    phone: phone,
-    name: name,
-    status: 'pending',
-  });
+  const run = async () => {
+    const response = client.lists.addListMember('55c18933f8', {
+      email_address: email,
+      phone: phone,
+      name: name,
+      status: 'pending',
+    });
+    console.log(response);
+  };
+
+  run();
 
   res.status(200).json({ status: 'OK' });
 }
